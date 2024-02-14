@@ -2,7 +2,6 @@ import { useEffect } from 'react';
 
 const useNewsQuery = (dispatch) => {
     useEffect(() => {
-        console.count('useEffect');
         (async () => {
             const url = 'http://localhost:8000/v2/top-headlines';
             const response = await fetch(url);
