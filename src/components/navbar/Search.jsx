@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext, useRef, useState } from 'react';
 import searchIcon from '../../assets/icons/search.svg';
 import xIcon from '../../assets/icons/x.svg';
 import { NewsDispatchContext } from '../../contexts/newsContext';
@@ -7,6 +7,7 @@ const Search = () => {
     const setQuery = useContext(NewsDispatchContext);
     const [search, setSearch] = useState('');
     const [showSearchBox, setShowSearchBox] = useState(false);
+    const searchRef = useRef(null);
 
     const handleSearch = (value) => {
         if (timeOutId) {
@@ -25,6 +26,12 @@ const Search = () => {
         setShowSearchBox((ssb) => {
             if (ssb) {
                 handleSearch('');
+            } else {
+                setTimeout(() => {
+                    if (searchRef.current) {
+                        searchRef.current.focus();
+                    }
+                }, 500);
             }
             return !ssb;
         });
@@ -34,6 +41,7 @@ const Search = () => {
         <div className='flex items-center space-x-3 lg:space-x-8 relative min-w-[240px]'>
             {showSearchBox && (
                 <input
+                    ref={searchRef}
                     placeholder='Search News'
                     name='searchTerm'
                     id='searchTerm'
