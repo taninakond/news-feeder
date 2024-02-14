@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import formatDate from '../../utils/formateDate';
 
 const LeftPost = ({ news }) => {
     return (
@@ -11,7 +12,7 @@ const LeftPost = ({ news }) => {
                 </a>
                 <p className='text-base text-[#292219]'>{news.description}</p>
                 <p className='mt-5 text-base text-[#94908C]'>
-                    {news.publishedAt}
+                    {formatDate(news.publishedAt)}
                 </p>
             </div>
         </div>

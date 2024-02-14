@@ -1,3 +1,5 @@
+import formatDate from '../../utils/formateDate';
+
 const Date = () => {
     return (
         <div className='flex items-center space-x-4'>
@@ -51,7 +53,7 @@ const Date = () => {
                     strokeLinejoin='round'
                 />
             </svg>
-            <span>Thursday, February 25, 2021</span>
+            <span>{formatDate()}</span>
         </div>
     );
 };

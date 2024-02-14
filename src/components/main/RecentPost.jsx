@@ -1,7 +1,8 @@
 import PropTypes from 'prop-types';
+import defaultThumb from '../../assets/news-placeholder-thumbnail.svg';
+import formatDate from '../../utils/formateDate';
 
 const RecentPost = ({ news }) => {
-    console.log(news);
     return (
         <div className='col-span-12 grid grid-cols-12 gap-4'>
             <div className='col-span-12 lg:col-span-4'>
@@ -12,15 +13,15 @@ const RecentPost = ({ news }) => {
                 </a>
                 <p className='text-base text-[#5C5955]'>{news.description}</p>
                 <p className='mt-5 text-base text-[#5C5955]'>
-                    {news.publishedAt}
+                    {formatDate(news.publishedAt)}
                 </p>
             </div>
 
             <div className='col-span-12 lg:col-span-8'>
                 <img
                     className='w-full'
-                    src='./assets/thumb_lg.png'
-                    alt='thumb'
+                    src={news.urlToImage ?? defaultThumb}
+                    alt={news.title}
                 />
                 <p className='mt-5 text-base text-[#5C5955]'>
                     Illustration: {news.author}

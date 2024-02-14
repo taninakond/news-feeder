@@ -1,4 +1,6 @@
 import PropTypes from 'prop-types';
+import defaultThumb from '../../assets/news-placeholder-thumbnail.svg';
+import formatDate from '../../utils/formateDate';
 
 const LeftFancyPost = ({ news }) => {
     return (
@@ -11,12 +13,16 @@ const LeftFancyPost = ({ news }) => {
                 </a>
                 <p className='text-base text-[#292219]'>{news.description}</p>
                 <p className='mt-5 text-base text-[#5C5955]'>
-                    {news.publishedAt}
+                    {formatDate(news.publishedAt)}
                 </p>
             </div>
 
             <div className='col-span-12 md:col-span-6'>
-                <img className='w-full' src={news.urlToImage} alt='thumb' />
+                <img
+                    className='w-full'
+                    src={news.urlToImage ?? defaultThumb}
+                    alt={news.title}
+                />
             </div>
         </div>
     );

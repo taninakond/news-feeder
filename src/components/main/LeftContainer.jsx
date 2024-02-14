@@ -1,13 +1,15 @@
-import PropTypes from 'prop-types';
-import { Fragment } from 'react';
+import { Fragment, useContext } from 'react';
+import { NewsContext } from '../../contexts/newsContext';
 import LeftFancyPost from './LeftFancyPost';
 import LeftPost from './LeftPost';
 import RecentPost from './RecentPost';
 
-const LeftContainer = ({ newses }) => {
+const LeftContainer = () => {
+    const newses = useContext(NewsContext);
+
     return (
         <div className='col-span-12 grid grid-cols-12 gap-6 self-start xl:col-span-8'>
-            {newses?.map((news, index) => (
+            {newses?.leftNews?.map((news, index) => (
                 <Fragment key={index}>
                     {index === 0 && <RecentPost news={news} />}
                     {index === 1 && <LeftFancyPost news={news} />}
@@ -16,10 +18,6 @@ const LeftContainer = ({ newses }) => {
             ))}
         </div>
     );
-};
-
-LeftContainer.propTypes = {
-    newses: PropTypes.array.isRequired,
 };
 
 export default LeftContainer;
